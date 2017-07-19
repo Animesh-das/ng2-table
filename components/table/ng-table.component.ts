@@ -56,6 +56,7 @@ export class NgTableComponent {
 
   @Input()
   public set columns(values:Array<any>) {
+	this._columns = [];
     values.forEach((value:any) => {
       if (value.filtering) {
         this.showFilterRow = true;
@@ -63,13 +64,15 @@ export class NgTableComponent {
       if (value.className && value.className instanceof Array) {
         value.className = value.className.join(' ');
       }
-      let column = this._columns.find((col:any) => col.name === value.name);
-      if (column) {
-        Object.assign(column, value);
-      }
-      if (!column) {
-        this._columns.push(value);
-      }
+	  
+	  this._columns.push(value);
+      // let column = this._columns.find((col:any) => col.name === value.name);
+      // if (column) {
+        // Object.assign(column, value);
+      // }
+      // if (!column) {
+        // this._columns.push(value);
+      // }
     });
   }
 
